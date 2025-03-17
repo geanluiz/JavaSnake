@@ -199,9 +199,17 @@ public class GamePanel extends JPanel implements ActionListener {
                     if(direction != 'U') {direction = 'D';}
                     break;
                 case KeyEvent.VK_ENTER:
+                    // New Game
                     if (!running) {
                         startGame();
                         repaint();
+                    }
+                    // Pause
+                    else if (timer.isRunning()){
+                        timer.stop();
+                    }
+                    else {
+                        timer.start();
                     }
             }
         }
