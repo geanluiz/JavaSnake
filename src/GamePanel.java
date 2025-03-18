@@ -138,6 +138,10 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         }
 
+        if(!running) {
+            timer.stop();
+        }
+
         //check if head touches left border
         if(x[0] < 0) {
             x[0] = SCREEN_WIDTH - UNIT_SIZE;
@@ -156,10 +160,6 @@ public class GamePanel extends JPanel implements ActionListener {
         //check if head touches bottom border
         if(y[0] > (SCREEN_HEIGHT - UNIT_SIZE)) {
             y[0] = 40;
-        }
-
-        if(!running) {
-            timer.stop();
         }
     }
 
