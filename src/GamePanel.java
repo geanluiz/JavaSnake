@@ -83,6 +83,10 @@ public class GamePanel extends JPanel implements ActionListener {
             FontMetrics metrics = getFontMetrics(g.getFont());
             g.drawString("Score: "+applesEaten,
                     (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
+
+            if (!timer.isRunning()) {
+                gamePaused(g);
+            }
         }
         else {
             gameOver(g);
@@ -180,6 +184,14 @@ public class GamePanel extends JPanel implements ActionListener {
         g.drawString("Press Enter to start new game.",
                 (SCREEN_WIDTH - metrics3.stringWidth("Press Enter to start new game."))/2, (SCREEN_HEIGHT/2)+30);
     }
+
+    public void gamePaused(Graphics g ) {
+        // Game paused
+        g.setColor(Color.yellow);
+        g.setFont( new Font("Arial",Font.PLAIN, 15));
+        FontMetrics metrics4 = getFontMetrics(g.getFont());
+        g.drawString("Game paused. Press enter to continue.",
+                (SCREEN_WIDTH - metrics4.stringWidth("Game paused. Press enter to continue."))/2, (SCREEN_HEIGHT/2));
     }
 
     @Override
