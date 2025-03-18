@@ -59,11 +59,6 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void draw(Graphics g) {
-        // Draw grid
-        /*for(int i=0;i<SCREEN_HEIGHT/UNIT_SIZE;i++) {
-            g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
-            g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
-        }*/
 
         if(running) {
             // Apple
@@ -86,8 +81,8 @@ public class GamePanel extends JPanel implements ActionListener {
             g.setColor(Color.red);
             g.setFont( new Font("Arial",Font.PLAIN, 30));
             FontMetrics metrics = getFontMetrics(g.getFont());
-            g.drawString("Score: "+applesEaten,
-                    (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
+            g.drawString("Score: " + applesEaten,
+                    (SCREEN_WIDTH - metrics.stringWidth("Score: " + applesEaten))/2, g.getFont().getSize());
 
             if (!timer.isRunning()) {
                 gamePaused(g);
@@ -169,14 +164,14 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void gameOver(Graphics g) {
-        //Score
-        g.setColor(Color.red);
+        //Score text
+        g.setColor(Color.yellow);
         g.setFont( new Font("Arial",Font.PLAIN, 30));
         FontMetrics metrics1 = getFontMetrics(g.getFont());
         g.drawString("Score: " + applesEaten,
                 (SCREEN_WIDTH - metrics1.stringWidth("Score: " + applesEaten))/2, g.getFont().getSize());
 
-        //Game Over text
+        //Game Over
         g.setColor(Color.red);
         g.setFont( new Font("Ink Free",Font.BOLD, 75));
         FontMetrics metrics2 = getFontMetrics(g.getFont());
@@ -233,9 +228,11 @@ public class GamePanel extends JPanel implements ActionListener {
                     // Pause
                     else if (timer.isRunning()){
                         timer.stop();
+                        repaint();
                     }
                     else {
                         timer.start();
+                        repaint();
                     }
             }
         }
