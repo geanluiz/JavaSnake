@@ -34,18 +34,23 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public void startGame() {
         newApple();
-        bodyParts = 6;
-        direction = 'R';
 
         for(int i = 0; i< bodyParts;i++) {
             x[i] = 0;
             y[i] = 40;
         }
 
-        applesEaten = 0;
         running = true;
         timer = new Timer(DELAY,this);
         timer.start();
+    }
+
+    public void restartGame() {
+        bodyParts = 6;
+        direction = 'R';
+        applesEaten = 0;
+        startGame();
+        repaint();
     }
 
     public void paintComponent(Graphics g) {
@@ -223,8 +228,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 case KeyEvent.VK_ENTER:
                     // New Game
                     if (!running) {
-                        startGame();
-                        repaint();
+                        restartGame();
                     }
                     // Pause
                     else if (timer.isRunning()){
